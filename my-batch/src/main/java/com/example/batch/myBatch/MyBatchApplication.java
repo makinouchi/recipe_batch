@@ -8,20 +8,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.example.batch.myBatch.service.YoutubeToVideoInsertUpdateService;
+import com.example.demo.shell.YoutubeToVideoInsertUpdate;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
 	    "com.example.batch",         // 自分のバッチのパッケージ
 	    "com.example.demo.service",  // VideoService のあるパッケージ
 	    "com.example.demo.common",   // 共通クラス等があれば追加
-	    "com.example.demo.model"     // モデルクラス等があれば追加
+	    "com.example.demo.model",     // モデルクラス等があれば追加
+	    "com.example.demo.shell"      // バッチメイン処理があるパッケージ
 	})
 @MapperScan("com.example.demo.mapper")
 public class MyBatchApplication implements CommandLineRunner {
 	
 	@Autowired
-	private YoutubeToVideoInsertUpdateService youtubeToVideoInsertUpdateService;
+	private YoutubeToVideoInsertUpdate youtubeToVideoInsertUpdate;
 	
     public static void main(String[] args) {
     	new SpringApplicationBuilder(MyBatchApplication.class)
@@ -31,6 +32,6 @@ public class MyBatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		youtubeToVideoInsertUpdateService.executeBatch();
+		youtubeToVideoInsertUpdate.run(args[0]);
 	}
 }
