@@ -11,12 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
 import com.example.demo.shell.YoutubeToVideoInsertUpdate;
 
 @SpringBootApplication
+// アプリ側に存在するコンポーネントのクラスを利用する場合、クラスのパッケージを指定しておく必要がある
 @ComponentScan(basePackages = {
-	    "com.example.batch",         // 自分のバッチのパッケージ
-	    "com.example.demo.service",  // VideoService のあるパッケージ
-	    "com.example.demo.common",   // 共通クラス等があれば追加
-	    "com.example.demo.model",     // モデルクラス等があれば追加
-	    "com.example.demo.shell"      // バッチメイン処理があるパッケージ
+	    "com.example.batch",
+	    "com.example.demo.service",
+	    "com.example.demo.common",
+	    "com.example.demo.model",
+	    "com.example.demo.shell"
 	})
 @MapperScan("com.example.demo.mapper")
 public class MyBatchApplication implements CommandLineRunner {
